@@ -12,22 +12,25 @@ namespace Q1
         public string ClassName { get; set; }
         public int MaxParticipants { get; set; }
         public int CurrentParticipants { get; set; }
-        protected FitnessClass(string classCode, string className, int maxParticipants)
+
+        protected FitnessClass(string classCode, string className, int maxParticipants, int currentParticipants)
         {
-            if (MaxParticipants <= 0)
+            if (maxParticipants <= 0)
             {
-                throw new ArgumentOutOfRangeException("MaxParticipants must be greater than 0");
+                throw new ArgumentOutOfRangeException(null, "MaxParticipants must be greater than 0");
             }
 
-            if (CurrentParticipants < 0 && CurrentParticipants > MaxParticipants)
+            if (currentParticipants < 0 || currentParticipants > maxParticipants)
             {
-                throw new ArgumentOutOfRangeException("CurrentParticipants must be between 0 and MaxParticipants");
+                throw new ArgumentOutOfRangeException(null, "CurrentParticipants must be between 0 and MaxParticipants");
             }
-            classCode = classCode;
-            className = className;
-            maxParticipants = maxParticipants;
-            CurrentParticipants = CurrentParticipants;
+
+            ClassCode = classCode;
+            ClassName = className;
+            MaxParticipants = maxParticipants;
+            CurrentParticipants = currentParticipants;
         }
+
         public abstract string GetClassType();
     }
 }

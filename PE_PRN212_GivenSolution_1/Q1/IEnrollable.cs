@@ -10,6 +10,6 @@ namespace Q1
     {
         public int MaxParticipants { get; }
         public int CurrentParticipants { get; }
-        public bool EnrollParticipant(int quantity);
+        public bool EnrollParticipants(int quantity);
     }
 }
