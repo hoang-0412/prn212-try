@@ -5,8 +5,95 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Q2"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="Movie Management" Height="600" Width="950"
+        WindowStartupLocation="CenterScreen">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
 
+        <!-- FILTER AREA -->
+        <GroupBox Header="FILTER AREA" Grid.Row="0" Margin="0,0,0,10" Padding="10">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <TextBlock Text="Genre:" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                <ComboBox x:Name="cboFilterGenre" Width="200" Margin="0,0,20,0"
+                          DisplayMemberPath="GenreName" SelectedValuePath="GenreId"/>
+
+                <TextBlock Text="Studio:" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                <ComboBox x:Name="cboFilterStudio" Width="200" Margin="0,0,20,0"
+                          DisplayMemberPath="StudioName" SelectedValuePath="StudioId"/>
+
+                <Button x:Name="btnFilter" Content="Filter" Width="80" Height="26" Margin="0,0,10,0" Click="btnFilter_Click"/>
+                <Button x:Name="btnClearFilter" Content="Clear Filter" Width="90" Height="26" Click="btnClearFilter_Click"/>
+            </StackPanel>
+        </GroupBox>
+
+        <!-- MOVIE LIST -->
+        <GroupBox Header="MOVIE LIST" Grid.Row="1" Margin="0,0,0,10" Padding="10">
+            <DataGrid x:Name="dgMovies"
+                      AutoGenerateColumns="False"
+                      IsReadOnly="True"
+                      CanUserAddRows="False"
+                      SelectionMode="Single">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="MovieId" Binding="{Binding MovieId}" Width="70"/>
+                    <DataGridTextColumn Header="Title" Binding="{Binding Title}" Width="*"/>
+                    <DataGridTextColumn Header="RatingCode" Binding="{Binding RatingCode}" Width="90"/>
+                    <DataGridTextColumn Header="ReleaseYear" Binding="{Binding ReleaseYear}" Width="95"/>
+                    <DataGridTextColumn Header="DurationMinutes" Binding="{Binding DurationMinutes}" Width="110"/>
+                    <DataGridTextColumn Header="GenreName" Binding="{Binding GenreName}" Width="130"/>
+                    <DataGridTextColumn Header="StudioName" Binding="{Binding StudioName}" Width="150"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </GroupBox>
+
+        <!-- ADD NEW MOVIE -->
+        <GroupBox Header="ADD NEW MOVIE" Grid.Row="2" Padding="10">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Row 0 -->
+                <TextBlock Text="Title:" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,8,8"/>
+                <TextBox x:Name="txtTitle" Grid.Row="0" Grid.Column="1" Height="24" Margin="0,0,16,8"/>
+
+                <TextBlock Text="RatingCode:" Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" Margin="0,0,8,8"/>
+                <TextBox x:Name="txtRatingCode" Grid.Row="0" Grid.Column="3" Height="24" Margin="0,0,16,8"/>
+
+                <TextBlock Text="ReleaseYear:" Grid.Row="0" Grid.Column="4" VerticalAlignment="Center" Margin="0,0,8,8"/>
+                <TextBox x:Name="txtReleaseYear" Grid.Row="0" Grid.Column="5" Height="24" Margin="0,0,0,8"/>
+
+                <!-- Row 1 -->
+                <TextBlock Text="DurationMinutes:" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,8,8"/>
+                <TextBox x:Name="txtDurationMinutes" Grid.Row="1" Grid.Column="1" Height="24" Margin="0,0,16,8"/>
+
+                <TextBlock Text="Genre:" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Margin="0,0,8,8"/>
+                <ComboBox x:Name="cboAddGenre" Grid.Row="1" Grid.Column="3" Height="24" Margin="0,0,16,8"
+                          DisplayMemberPath="GenreName" SelectedValuePath="GenreId"/>
+
+                <TextBlock Text="Studio:" Grid.Row="1" Grid.Column="4" VerticalAlignment="Center" Margin="0,0,8,8"/>
+                <ComboBox x:Name="cboAddStudio" Grid.Row="1" Grid.Column="5" Height="24" Margin="0,0,0,8"
+                          DisplayMemberPath="StudioName" SelectedValuePath="StudioId"/>
+
+                <!-- Row 2 -->
+                <StackPanel Grid.Row="2" Grid.ColumnSpan="6" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,6,0,0">
+                    <Button x:Name="btnAddMovie" Content="Add Movie" Width="100" Height="26" Margin="0,0,10,0" Click="btnAddMovie_Click"/>
+                    <Button x:Name="btnClearForm" Content="Clear Form" Width="100" Height="26" Click="btnClearForm_Click"/>
+                </StackPanel>
+            </Grid>
+        </GroupBox>
     </Grid>
 </Window>
